@@ -1,0 +1,11 @@
+Plugin Name: Content Monitor
+Author: Andrew Billits
+
+Files:
+----------------------------------------------------------------------
+content-monitor.php - goes in /wp-content/mu-plugins
+
+Instructions:
+----------------------------------------------------------------------
+1) Place the files in the specified directories
+2) You can customize the email text at the top of the plugin.
