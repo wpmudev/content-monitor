@@ -1,0 +1,89 @@
+# Copyright (C) 2015 Content Monitor
+# This file is distributed under the same license as the Content Monitor package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Content Monitor 1.4\n"
+"Report-Msgid-Bugs-To: http://premium.wpmudev.org/\n"
+"POT-Creation-Date: 2015-10-21 23:45:42+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: content-monitor.php:35
+msgid "Content Monitor is only compatible with Multisite installs."
+msgstr ""
+
+#: content-monitor.php:59
+msgid "SITE_NAME: Content Notification"
+msgstr ""
+
+#: content-monitor.php:61
+msgid ""
+"Dear EMAIL,\n"
+"\n"
+"The following TYPE on SITE_NAME has been flagged as possibly containing a non-allowed word:\n"
+"\n"
+"PERMALINK"
+msgstr ""
+
+#: content-monitor.php:114 content-monitor.php:139
+msgid "Content Monitor"
+msgstr ""
+
+#: content-monitor.php:135
+msgid "Settings saved."
+msgstr ""
+
+#: content-monitor.php:143
+msgid "Email Address"
+msgstr ""
+
+#: content-monitor.php:150
+msgid "Content notifications will be sent to this address."
+msgstr ""
+
+#: content-monitor.php:153
+msgid "Post/Page Monitoring"
+msgstr ""
+
+#: content-monitor.php:160
+msgid "Enabled"
+msgstr ""
+
+#: content-monitor.php:162
+msgid "Disabled"
+msgstr ""
+
+#: content-monitor.php:167
+msgid "Bad Words"
+msgstr ""
+
+#: content-monitor.php:172
+msgid "Place a comma between each word (ex bad, word)."
+msgstr ""
+
+#: content-monitor.php:178
+msgid "Save Changes"
+msgstr ""
+#. Plugin Name of the plugin/theme
+msgid "Content Monitor"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://premium.wpmudev.org/project/content-monitor/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Allows you to monitor your entire site for set words that you define (and get an email whenever they are used) - perfect for educational or high profile sites."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WPMU DEV"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://premium.wpmudev.org/"
+msgstr ""
