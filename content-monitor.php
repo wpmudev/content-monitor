@@ -42,8 +42,7 @@ class Content_Monitor {
 		add_action( 'network_admin_menu', array( &$this, 'plug_pages' ) );
 
 		if ( get_site_option( 'content_monitor_post_monitoring' ) ) {
-			add_action( 'publish_post', array( &$this, 'post_monitor', 10, 2 ) );
-			add_action( 'publish_page', array( &$this, 'post_monitor', 10, 2 ) );
+			add_action( 'save_post', array( &$this, 'post_monitor' ), 10, 2 );
 		}
 	}
 
@@ -54,14 +53,13 @@ class Content_Monitor {
 	}
 
 	public function send_email( $post_permalink, $post_type ) {
-		global $current_site, $content_monitor_message_subject, $content_monitor_message_content;
+		global $current_site;
 
-		$content_monitor_message_subject = __( "SITE_NAME: Content Notification", 'contentmon' );
+		$subject_content = __( "SITE_NAME: Content Notification", 'contentmon' );
 
-		$content_monitor_message_content = __( "Dear EMAIL,
+		$message_content = __( "Dear EMAIL,
 
 The following TYPE on SITE_NAME has been flagged as possibly containing a non-allowed word:
-
 PERMALINK", 'contentmon' );
 
 		$send_to_email = get_site_option( 'content_monitor_email' );
@@ -69,21 +67,28 @@ PERMALINK", 'contentmon' );
 			$send_to_email = get_site_option( "admin_email" );
 		}
 
-		$message_content = $content_monitor_message_content;
 		$message_content = str_replace( "SITE_NAME", $current_site->site_name, $message_content );
 		$message_content = str_replace( "SITE_URL", 'http://' . $current_site->domain . '', $message_content );
 		$message_content = str_replace( "PERMALINK", $post_permalink, $message_content );
 		$message_content = str_replace( "TYPE", $post_type, $message_content );
 		$message_content = str_replace( "EMAIL", $send_to_email, $message_content );
-		$message_content = str_replace( "\'", "'", $message_content );
 
-		$subject_content = $content_monitor_message_subject;
 		$subject_content = str_replace( "SITE_NAME", $current_site->site_name, $subject_content );
 
 		wp_mail( $send_to_email, $subject_content, $message_content );
 	}
 
 	public function post_monitor( $post_id, $post ) {
+
+		//Don't record this if it's not a post
+		if ( ! ( 'post' == $post->post_type || 'page' == $post->post_type ) ) {
+			return false;
+		}
+
+		if ( 'publish' != $post->post_status || ! empty( $post->post_password ) ) {
+			return false;
+		}
+
 		//get bad words array
 		$bad_words       = get_site_option( 'content_monitor_bad_words' );
 		$bad_words_array = explode( ",", $bad_words );
@@ -119,7 +124,6 @@ PERMALINK", 'contentmon' );
 //------------------------------------------------------------------------//
 
 	public function page_main_output() {
-		global $wpdb, $wp_roles, $current_user, $cm_admin_url;
 
 		if ( ! current_user_can( 'manage_network_options' ) ) {
 			wp_die( 'Nice Try...' );  //If accessed properly, this message doesn't appear.
